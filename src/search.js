@@ -29,7 +29,7 @@ export class Search {
     this.bindingEngine = bindingEngine;
   }
 
-  activate(params, routeConfig, navigationInstruction) {
+  activate(params) {
     if (params.searchTerm && params.searchTerm !== 'null') {
       this.searchTerm = params.searchTerm;
     }
