@@ -1,0 +1,49 @@
+<template>
+	<section class="au-animate">
+		<h2>Search</h2>
+		<form role="form" submit.delegate="submit()">
+			<div class="form-group">
+				<test></test>
+				<label for="sn">School Name</label>
+				<input type="text" value.bind="searchTerm" class="form-control" id="sn" placeholder="school name">
+			</div>
+			<div class="form-group">
+				<label for="ln">District</label>
+				<label repeat.for="district of districts">
+          <input type="checkbox" model.bind="district.id" checked.bind="selectedDistricts" />
+          ${district.name}
+        </label>
+			</div>
+			<div class="form-group">
+				<label for="ln">Level</label>
+				<label repeat.for="level of levels">
+          <input type="checkbox" model.bind="level.id" checked.bind="selectedLevels" />
+          ${level.name}
+        </label>
+			</div>
+		</form>
+	</section>
+
+	<div if.bind="searchResults.length > 0 " repeat.for="school of searchResults" class="col-sm-3" style="margin-left: 20px">
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<h3 class="panel-title">${school.name}</h3>
+			</div>
+			<div class="panel-body">
+				<p><strong>Level:&nbsp;</strong>${school.level.name}</p>
+				<p><strong>District:&nbsp;</strong>${school.district.name}</p>
+			</div>
+		</div>
+	</div>
+
+	<div if.bind="searchResults.length === 0" class="col-sm-3" style="margin-left: 20px">
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<h3 class="panel-title">&nbsp;</h3>
+			</div>
+			<div class="panel-body">
+				No results
+			</div>
+		</div>
+	</div>
+</template>
